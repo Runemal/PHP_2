@@ -1,0 +1,13 @@
+<!-- begin: secondary.tmpl -->
+<hr>
+<h1> Каталог </h1>
+<div class="catalog">
+      {% for item in nav.secondary %}
+      <a class="gallery" href="{{ item.url }}"><img height="150" src="{{ item.url }}" alt="Some image"> <br> {{ item.name }}</a>
+      {% endfor %}
+</div>
+        <div>
+        </div>
+        <br>
+        <hr>
+<!-- end: secondary.tmpl →
