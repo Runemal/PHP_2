@@ -1,0 +1,57 @@
+<html lang="ru">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Каталог товаров</title>
+        <link rel="stylesheet" href="css/style.css">
+
+        <script type="text/javascript" src="scripts/jquery.js"></script>
+        <script type="text/javascript" src="scripts/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+        <script type="text/javascript" src="scripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+        <link rel="stylesheet" type="text/css" href="scripts/fancybox/jquery.fancybox-1.3.4.css" media="screen">
+        <script type="text/javascript" src="scripts/autoupdate.js"></script>
+        <script>
+        $(document).ready(function() {
+        	$('#content').scrollPagination({
+        		nop     : 25,
+        		offset  : 0,
+        		error   : 'Записей больше нет!',
+        		delay   : 500,
+        		scroll  : true
+        	});
+        });
+        </script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("a.gallery").fancybox({
+                    transitionIn: 'elastic',
+                    transitionOut: 'elastic',
+                    speedIn: 500,
+                    speedOut: 500
+                });
+            });
+        </script>
+
+    </head>
+
+    <body>
+      <div class="container">
+        <div class="header">
+            <div class="logo">
+                <a href="#"><img src="img/logo_crete.png" alt="LOGO"></a>
+            </div>
+            <div class="menu">
+                {% include 'primary.tmpl' %}
+            </div>
+        </div>
+
+        <div class="catalog content">
+                {% include 'secondary.tmpl' %}
+
+        <div class="footer" id="footer">
+            {% include 'footer.tmpl' %}
+        </div>
+      </div>
+    </body>
+</html>
