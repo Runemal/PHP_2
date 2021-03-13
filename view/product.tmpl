@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ contentData.title }}</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script type="text/javascript" src="scripts/jquery.js"></script>
+    <script type="text/javascript" src="scripts/fancybox/jquery.mousewheel-3.0.4.pack.js"></script>
+    <script type="text/javascript" src="scripts/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+    <link rel="stylesheet" type="text/css" href="scripts/fancybox/jquery.fancybox-1.3.4.css" media="screen">
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $("a.gallery").fancybox({
+                    transitionIn: 'elastic',
+                    transitionOut: 'elastic',
+                    speedIn: 500,
+                    speedOut: 500
+                });
+            });
+        </script>
+        <script src='../assets/js/AjaxBusket.js'></script>
+</head>
+
+<body>
+<div class="container"> <div class="header">
+        <div class="logo"><a href="index.php"><img src="img/logo_crete.png" alt="LOGO"></a></div>
+        <div class="menu">
+            {% include 'header.tmpl' %}
+        </div>
+    </div>
+    <hr>
+    <h1>{{ contentData.title }}</h1>
+    <div class="small_block">
+        <h3 class="h3_tovar">Описание товара</h3>
+        <a class="gallery"  title="{{ contentData.title }}" href="{{ contentData.imgBig }}" target="_blank"><img class="img_tovar" src="{{ contentData.imgSmall }}" alt="5L_GREEN" height="200"></a>
+        <p class="small_text"> {{ contentData.info }} </p>
+
+
+        <form style="width: auto; float: left; " action="engine/db_crud.php" method="post" enctype="multipart/form-data">
+            <input type="hidden" name="action" value="additem">
+            <input type="hidden" name="id" value="<?= $good['id_good']?>">
+            <input type="hidden" name="userid" value="<?= $userID ?>">
+            <input style="margin: 0 auto; width: 5rem;" type="number" min="1" value="1" name="goodcount">
+            <input type="submit" style="width: auto;" value="Купить">
+        </form>
+
+    <!-- <a class="buy_now ItemBuy" onclick='AddToBusket({{contentData[0].id}});'>Купить</a> -->
+    </div>
+
+<br>
+    <h3 class="h3_tovar">Характеристики товара</h3>
+    <div class="big_text">
+        <p>{{ contentData.goodchar }} {{ contentData.price }} €. </p>
+        <ul>
+            <li>{{ contentData.goodchar1 }}</li>
+            <li>{{ contentData.goodchar2 }}</li>
+            <li>{{ contentData.goodchar3 }}</li>
+        </ul>
+        <p class="big_text">При оптовой поставке:</p>
+        <table>
+            <tr>
+                <td>Количество товара в коробке</td>
+                <td>Размер палетты</td>
+                <td>Количество коробок в палетте</td>
+            </tr>
+            <tr>
+                <td>{{ contentData.iteminbox }}</td>
+                <td>{{ contentData.palletesize }}</td>
+                <td>{{ contentData.boxinpallete }}</td>
+            </tr>
+            <tr>
+                <td>{{ contentData.iteminbox1 }}</td>
+                <td>{{ contentData.palletesize1 }}</td>
+                <td>{{ contentData.boxinpallete1 }}</td>
+            </tr>
+        </table>
+    </div>
+    <h3 class="h3_tovar">Доставка</h3>
+    <p class="big_text">{{ contentData.delivery }}</p>
+    <hr>
+
+    <h3 class="h3_tovar">Отзывы покупателей</h3>
+
+<?php
+    while ($comment = mysqli_fetch_assoc($resComment)):?>
+        <ul><li style="background-color: #eaeaea"> Дата отзыва: <?= $comment['datecreate']?> Покупатель: <?= $comment['username']?></li></ul>
+        <p class="big_text"><?= $comment['comment']?></p><br>
+    <?php
+endwhile;
+?>
+
+    <hr>
+    <br>
+    <form action="engine/db_crud.php" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="action" value="addcomment">
+        <input type="hidden" name="id" value="<?= $good['id_good']?>">
+        <p>Ваше имя</p>
+        <input type="text" name="username">
+        <p>Ваш отзыв</p>
+        <textarea name="comment" cols="30" rows="10"></textarea>
+        <input type="submit" value="Отправить">
+    </form>
+    <br>
+    <hr>
+    <div class="footer">
+        {% include 'footer.tmpl' %}
+    </div></div>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<html lang="ru">
+
+    <head>
+        <meta charset="UTF-8">
+        <title>Каталог товаров</title>
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+
+    <body>
+      <div class="container">
+        <div class="header">
+            <div class="logo">
+                <a href="#"><img src="img/logo_crete.png" alt="LOGO"></a>
+            </div>
+            <div class="menu">
+                {% include 'header.tmpl' %}
+            </div>
+        </div>
+
+        <div class="catalog">
+                {% include 'catalog.tmpl' %}
+        </div>
+        <div class="footer" id="footer">
+            {% include 'footer.tmpl' %}
+        </div>
+      </div>
+    </body>
+</html>
