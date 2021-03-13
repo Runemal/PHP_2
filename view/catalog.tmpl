@@ -1,0 +1,11 @@
+<hr>
+<h1> Каталог </h1>
+<div class="catalog">
+      {% for item in contentData %}
+
+      <a class="gallery"  title="{{ item.title }}" href="index.php?path=product/show/{{ item.id_good }}"><img height="150" src="{{ item.imgBig }}" alt="Some image"><br>{{ item.title }}</a>
+      {% endfor %}
+</div>
+
+        <br>
+        <hr>

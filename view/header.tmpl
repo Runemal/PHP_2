@@ -1,0 +1,8 @@
+
+        {% for item in menu %}
+        <a href="{{ item.url }}">{{ item.name|upper }}</a>
+        {% endfor %}
+
+        <a href="index.php">Главная</a>
+        <a href="index.php">Каталог</a>
+        <a href="index.php?path=busket/show">Корзина</a>
